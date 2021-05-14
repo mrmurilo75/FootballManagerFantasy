@@ -5,30 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/stadium"
-    tools:context=".MainActivity"
-    tools:ignore="ExtraText">
+    tools:context=".activities.MainActivity"
+    android:id="@+id/main_content">
 
 
         <Button
             android:id="@+id/newGame"
-            android:layout_width="211dp"
-            android:layout_height="58dp"
+            android:layout_width="210dp"
+            android:layout_height="60dp"
             android:text="@string/new_game"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loadGame"
-            app:layout_constraintVertical_bias="0.161" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.72" />
 
         <Button
             android:id="@+id/loadGame"
-            android:layout_width="211dp"
-            android:layout_height="58dp"
+            android:layout_width="210dp"
+            android:layout_height="60dp"
             android:text="@string/load_game"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.45" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

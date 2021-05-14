@@ -4,4 +4,7 @@
     <string name="load_game">load game</string>
     <string name="input_name">name</string>
     <string name="button_next">next</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
