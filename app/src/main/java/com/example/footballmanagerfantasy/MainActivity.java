@@ -3,41 +3,41 @@ package com.example.footballmanagerfantasy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.media.Image;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ProgressBar;
+
+import com.example.footballmanagerfantasy.gameEngine.GameState;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button newGame;
-    Button loadGame;
     Context context;
+    //contains all the info of the current game
+    GameState gameState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         getSupportActionBar().hide();
-        loadGame = findViewById(R.id.loadGame);
-        newGame = findViewById(R.id.newGame);
-        newGame.setOnClickListener( new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                DataBase.loadResources(context,true);
-                setContentView(R.layout.main_menu);
-            }
+
+        findViewById(R.id.newGame).setOnClickListener(v -> {
+            gameState = new GameState(context); //crates a new Game
+            setContentView(R.layout.get_user_name);
         });
-        loadGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DataBase.loadResources(context,false);
-                setContentView(R.layout.main_menu);
+        findViewById(R.id.loadGame).setOnClickListener(v -> {
+            gameState = GameState.loadGameState(context); //loads the existing game
+            if(gameState == null) {
+                //TODO file doesn't exists, show error message and create new Game
             }
+            //TODO change to the main menu, with is empty
+            setContentView(R.layout.main_menu);
         });
+
     }
 }

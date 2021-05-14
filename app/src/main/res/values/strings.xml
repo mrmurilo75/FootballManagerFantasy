@@ -2,4 +2,6 @@
     <string name="app_name">Football Manager Fantasy</string>
     <string name="new_game">new game</string>
     <string name="load_game">load game</string>
+    <string name="input_name">name</string>
+    <string name="button_next">next</string>
 </resources>
