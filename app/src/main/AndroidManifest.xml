@@ -10,30 +10,27 @@
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/Theme.FootballManagerFantasy">
-
+        <activity android:name=".activities.ChooseTeamActivity"></activity>
         <activity
-            android:screenOrientation="landscape"
             android:name=".activities.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            >
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:screenOrientation="landscape"
             android:name=".activities.NewGameActivity"
             android:label="@string/new_game"
             android:parentActivityName=".activities.MainActivity"
-            >
+            android:screenOrientation="landscape">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.footballmanagerfantasy.activities.MainActivity" />
         </activity>
-
     </application>
+
 </manifest>
