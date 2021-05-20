@@ -32,5 +32,7 @@ public class ChooseTeamActivity extends Fullscreen {
 
     private void chooseTeam(int chosenTeam) {
         // Create new player with chosen team
+
+        // go to main page
     }
 }

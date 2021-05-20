@@ -3,17 +3,17 @@ package com.example.footballmanagerfantasy.activities;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.footballmanagerfantasy.databinding.ActivityMainBinding;
+import com.example.footballmanagerfantasy.databinding.ActivityStartBinding;
 
-public class MainActivity extends Fullscreen{
+public class StartActivity extends Fullscreen{
 
-    private ActivityMainBinding binding;
+    private ActivityStartBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityStartBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         mVisible = true;
