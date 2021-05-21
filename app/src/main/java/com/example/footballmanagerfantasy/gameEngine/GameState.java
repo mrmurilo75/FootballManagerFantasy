@@ -6,14 +6,18 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Random;
 
 
 public class GameState implements Serializable{
 
     private static final String gameStateFile = "gameState.ser";
-    Context context;
 
+    Context context;
     HashMap<Integer, League> clubsAndPlayers;
     int currentRound;
 
@@ -22,11 +26,13 @@ public class GameState implements Serializable{
         context = ct;
         clubsAndPlayers = new HashMap<>();
         initialize();
-        System.out.println(clubsAndPlayers);
-        for(int key : clubsAndPlayers.keySet()){
-            clubsAndPlayers.get(key).makeCalender();
+        for(int leagueName : clubsAndPlayers.keySet()){
+            League l = clubsAndPlayers.get(leagueName);
+            l.makeCalender();
+            for(String clubName : l.clubs.keySet()){
+                l.clubs.get(clubName).assignPositions();
+            }
         }
-
         saveGameState();
     }
 
@@ -42,12 +48,57 @@ public class GameState implements Serializable{
 
                 Club homeTeam = l.clubs.get(g.away);
                 Club awayTeam = l.clubs.get(g.home);
+//                System.out.println("home : " + homeTeam);
+//                System.out.println("away : " + awayTeam);
 
-                //TODO not finished
+                double homeTeamChances[] = homeTeam.getChances();
+                double awayTeamChances[] = awayTeam.getChances();
+
+                int homeGoals = 0;
+                int awayGoals = 0;
+
+                int nHome = (int)homeTeamChances[2];
+                int nAway = (int)awayTeamChances[2];
+
+//                System.out.println("home : " + Arrays.toString(homeTeamChances));
+//                System.out.println("away : " + Arrays.toString(awayTeamChances));
+
+                for(int i = 0; i < nHome;i++){
+                    if( Math.random() < homeTeamChances[1] && Math.random() > awayTeamChances[0] ){
+                        homeGoals++;
+                    }
+                }
+                for(int i = 0;i < nAway;i++){
+                    if( Math.random() < awayTeamChances[1] && Math.random() > homeTeamChances[0] ){
+                        awayGoals++;
+                    }
+                }
+                g.result = new int[]{homeGoals,awayGoals};
+                homeTeam.goalsScored += homeGoals;
+                homeTeam.goalsConceded += awayGoals;
+                awayTeam.goalsScored += awayGoals;
+                awayTeam.goalsConceded += homeGoals;
+
+                if(homeGoals > awayGoals) {
+                    homeTeam.wins++;
+                    homeTeam.points += 3;
+                    awayTeam.losses++;
+                }
+                else if(awayGoals > homeGoals){
+                    awayTeam.wins++;
+                    awayTeam.points += 3;
+                    homeTeam.losses++;
+                }
+                else {
+                    homeTeam.draws++;
+                    homeTeam.points++;
+                    awayTeam.draws++;
+                    awayTeam.points++;
+                }
             }
-
         }
-
+//        System.out.println(clubsAndPlayers.get(1).calendar.get(currentRound));
+        currentRound++;
     }
 
     /**
@@ -112,28 +163,37 @@ public class GameState implements Serializable{
         for(int i = 1; i <= 3;i++){
             League l = new League();
             clubsAndPlayers.put(i,l);
-            int minObjective = 1;
-            int maxObjective = 1;
             for(int j = 1;j <= 18;j++){
-                if(j == 4){
-                    minObjective = 2;
-                    maxObjective = 4;
-                }
-                if(j == 7){
-                    minObjective = 5;
-                    maxObjective = 16;
-                }
-                Club c = new Club(minObjective,maxObjective);
+                int minObjective = j <= 3 ? 1 : j <= 6 ? 4 : 16;
+                int maxObjective = j <= 3 ? 1 : j <= 6 ? 2 : 5;
+                Club c = new Club(i,minObjective,maxObjective);
                 l.clubs.put(Resources.clubNames.removeFirst(),c);
                 for(int k = 1;k <= 20;k++){
-                    String position;
-                    if(k <= 3) position = "G";
-                    if(k >= 4 && k <= 9) position = "D";
-                    if(k >= 10 && k <= 15) position = "M";
-                    else position = "A";
-                    c.players.put(Resources.names.removeFirst(),new Player(position));
+                    String position = k <= 3 ? "G" : k <= 9 ? "D" : k <= 15 ? "M" : "A";
+                    c.players.put(Resources.names.removeFirst(),new Player(position,i,maxObjective));
                 }
             }
         }
+    }
+
+    /**
+     * @return a list with all the players in the game,
+     * useful for transferMarket to show all the players.
+     */
+    public LinkedList<Player> getAllPlayers(){
+
+        LinkedList<Player> players = new LinkedList<>();
+
+        for( int leagueName : clubsAndPlayers.keySet() ){
+            League l = clubsAndPlayers.get(leagueName);
+            for( String clubName : l.clubs.keySet() ){
+                Club c = l.clubs.get(clubName);
+                for( String playerName : c.players.keySet() ){
+                    players.add(c.players.get(playerName));
+                }
+            }
+        }
+//        Collections.sort( players, (p1, p2) -> p1.rank -p2.rank );
+        return players;
     }
 }

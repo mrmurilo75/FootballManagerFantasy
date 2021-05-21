@@ -7,10 +7,11 @@ class Player implements Serializable {
     String position;
     int age;
     int rank;
+    int fieldPos; //positive value is on field, negative is on bench -1,-2,-3 ...
 
-    public Player(String pos){
-        age = Resources.ages.removeFirst();
-        rank = Resources.rankings.removeFirst();
+    public Player(String pos,int division,int maxObjective){
+        age = RandomGenerator.getPlayerAge();
+        rank = RandomGenerator.getPlayerRank(division,maxObjective);
         position = pos;
     }
 
@@ -22,5 +23,6 @@ class Player implements Serializable {
                 ", rank=" + rank +
                 '}';
     }
+
 }
 
