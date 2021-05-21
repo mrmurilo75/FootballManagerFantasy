@@ -4,4 +4,16 @@
     <string name="load_game">load game</string>
     <string name="input_name">name</string>
     <string name="button_next">next</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="new_game_name">Your Name</string>
+    <string name="chooseTeam_finish_button">Finish</string>
+    <string name="team_01">Team 01</string>
+    <string name="choose_button">Choose</string>
+    <string name="team_02">Team 02</string>
+    <string name="team_03">Team 03</string>
+    <string name="team_04">Team 04</string>
+    <string name="team_05">Team 05</string>
+    <string name="team_06">Team 06</string>
 </resources>

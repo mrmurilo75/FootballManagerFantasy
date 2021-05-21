@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/stadium"
+    tools:context=".activities.ChooseTeamActivity">
+
+    <TableLayout
+        android:id="@+id/table"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:text="@string/team_01"
+                android:textColor="@color/white"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:gravity="center_vertical"
+                android:layout_weight="0.7"
+                android:paddingStart="16dp"
+                android:background="@color/green"
+                tools:ignore="RtlSymmetry" />
+            <Button
+                android:id="@+id/chooseButton_Team01"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_height="wrap_content"
+                android:text="@string/choose_button"
+
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:text="@string/team_02"
+                android:textColor="@color/white"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:gravity="center_vertical"
+                android:layout_weight="0.7"
+                android:paddingStart="16dp"
+                android:background="@color/green"
+                tools:ignore="RtlSymmetry" />
+            <Button
+                android:id="@+id/chooseButton_Team02"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_height="wrap_content"
+                android:text="@string/choose_button"
+
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:text="@string/team_03"
+                android:textColor="@color/white"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:gravity="center_vertical"
+                android:layout_weight="0.7"
+                android:paddingStart="16dp"
+                android:background="@color/green"
+                tools:ignore="RtlSymmetry" />
+            <Button
+                android:id="@+id/chooseButton_Team03"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_height="wrap_content"
+                android:text="@string/choose_button"
+
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:text="@string/team_04"
+                android:textColor="@color/white"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:gravity="center_vertical"
+                android:layout_weight="0.7"
+                android:paddingStart="16dp"
+                android:background="@color/green"
+                tools:ignore="RtlSymmetry" />
+            <Button
+                android:id="@+id/chooseButton_Team04"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_height="wrap_content"
+                android:text="@string/choose_button"
+
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:text="@string/team_05"
+                android:textColor="@color/white"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:gravity="center_vertical"
+                android:layout_weight="0.7"
+                android:paddingStart="16dp"
+                android:background="@color/green"
+                tools:ignore="RtlSymmetry" />
+            <Button
+                android:id="@+id/chooseButton_Team05"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_height="wrap_content"
+                android:text="@string/choose_button"
+
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:text="@string/team_06"
+                android:textColor="@color/white"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:gravity="center_vertical"
+                android:layout_weight="0.7"
+                android:paddingStart="16dp"
+                android:background="@color/green"
+                tools:ignore="RtlSymmetry" />
+            <Button
+                android:id="@+id/chooseButton_Team06"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_height="wrap_content"
+                android:text="@string/choose_button"
+                />
+        </TableRow>
+
+    </TableLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
