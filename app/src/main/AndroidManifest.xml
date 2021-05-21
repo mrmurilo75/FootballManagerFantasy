@@ -10,6 +10,7 @@
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/Theme.FootballManagerFantasy">
+        <activity android:name=".activities.MainActivity"></activity>
         <activity
             android:name=".activities.StartActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
