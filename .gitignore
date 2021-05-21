@@ -1,6 +1,2 @@
-.gradle
-.idea
 local.*
-build.gradle
-gradle/wrapper/gradle-wrapper.properties
 
