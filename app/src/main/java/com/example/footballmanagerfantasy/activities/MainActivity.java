@@ -3,11 +3,20 @@ package com.example.footballmanagerfantasy.activities;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.footballmanagerfantasy.databinding.ActivityMainBinding;
+
+import java.util.LinkedList;
 
 public class MainActivity extends Fullscreen {
 
     private ActivityMainBinding binding;
+
+    private RecyclerView positionsView;
+    private PositionListAdapter positionsAdapter;
+    private LinkedList<String> positionsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +37,17 @@ public class MainActivity extends Fullscreen {
         binding.buttonTacticsMain.setOnClickListener(view -> launchTacticsActivity());
 
         binding.button4Main.setOnClickListener(view -> testToast());
+
+        positionsList = new LinkedList<>();
+        for(int i = 0; i < 18; i++)
+            positionsList.add("Team "+ ((i<10)? "0"+i : i) );
+
+        positionsView = binding.recyclerPositionsMain;
+        positionsAdapter = new PositionListAdapter(this, positionsList);
+        positionsView.setAdapter(positionsAdapter);
+        positionsView.setLayoutManager(new LinearLayoutManager(this));
+
+
     }
 
     private void launchInboxActivity() {
