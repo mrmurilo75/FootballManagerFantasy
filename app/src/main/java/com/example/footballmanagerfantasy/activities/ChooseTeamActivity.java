@@ -1,5 +1,6 @@
 package com.example.footballmanagerfantasy.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.footballmanagerfantasy.databinding.ActivityChooseTeamBinding;
@@ -7,6 +8,7 @@ import com.example.footballmanagerfantasy.databinding.ActivityChooseTeamBinding;
 public class ChooseTeamActivity extends Fullscreen {
 
     private ActivityChooseTeamBinding binding;
+    String playerName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,10 +16,8 @@ public class ChooseTeamActivity extends Fullscreen {
 
         binding = ActivityChooseTeamBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         mVisible = true;
         mContentView = binding.mainContent;
-
         // Show or hide the system UI.
         mContentView.setOnClickListener(view -> toggle());
 
@@ -28,11 +28,15 @@ public class ChooseTeamActivity extends Fullscreen {
         binding.chooseButtonTeam05.setOnClickListener(view -> chooseTeam(5));
         binding.chooseButtonTeam06.setOnClickListener(view -> chooseTeam(6));
 
+        Intent intent = getIntent();
+        playerName = intent.getStringExtra(NewGameActivity.EXTRA_NAME);
+
     }
 
     private void chooseTeam(int chosenTeam) {
-        // Create new player with chosen team
+        // TODO Create new player with chosen team
 
-        // go to main page
+        // Launch MainActivity
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

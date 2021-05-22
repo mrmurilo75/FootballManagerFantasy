@@ -39,6 +39,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.footballmanagerfantasy.activities.StartActivity" />
         </activity>
+
+        <activity android:name=".activities.MainActivity"
+            android:label="Main Activity"
+            android:screenOrientation="landscape">
+        </activity>
     </application>
 
 </manifest>
