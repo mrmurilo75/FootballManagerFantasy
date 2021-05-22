@@ -10,7 +10,6 @@
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/Theme.FootballManagerFantasy">
-        <activity android:name=".activities.MainActivity"></activity>
         <activity
             android:name=".activities.StartActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -39,6 +38,11 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.footballmanagerfantasy.activities.StartActivity" />
+        </activity>
+
+        <activity android:name=".activities.MainActivity"
+            android:label="Main Activity"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 
