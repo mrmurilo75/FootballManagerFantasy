@@ -38,6 +38,7 @@ public class MainActivity extends Fullscreen {
 
         binding.button4Main.setOnClickListener(view -> testToast());
 
+        // place holder
         positionsList = new LinkedList<>();
         for(int i = 0; i < 18; i++)
             positionsList.add("Team "+ ((i<10)? "0"+i : i) );

@@ -10,6 +10,7 @@
         android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/Theme.FootballManagerFantasy">
+
         <activity
             android:name=".activities.StartActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -21,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activities.NewGameActivity"
             android:label="@string/new_game"
@@ -30,6 +32,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.footballmanagerfantasy.activities.StartActivity" />
         </activity>
+
         <activity
             android:name=".activities.ChooseTeamActivity"
             android:label="Choose Team"
@@ -40,10 +43,34 @@
                 android:value="com.example.footballmanagerfantasy.activities.StartActivity" />
         </activity>
 
-        <activity android:name=".activities.MainActivity"
+        <activity
+            android:name=".activities.MainActivity"
             android:label="Main Activity"
+            android:parentActivityName=".activities.StartActivity"
             android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.footballmanagerfantasy.activities.StartActivity" />
         </activity>
+
+        <activity android:name=".activities.MarketActivity"
+            android:label="Market Activity"
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.footballmanagerfantasy.activities.MainActivity" />
+        </activity>
+
+        <activity android:name=".activities.TacticsActivity"
+            android:label="Tactics Activity"
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.footballmanagerfantasy.activities.MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>
