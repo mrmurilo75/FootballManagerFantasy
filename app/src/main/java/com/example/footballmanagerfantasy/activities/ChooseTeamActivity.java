@@ -33,6 +33,13 @@ public class ChooseTeamActivity extends Fullscreen {
 
     }
 
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        delayedHide();
+    }
+
     private void chooseTeam(int chosenTeam) {
         // TODO Create new player with chosen team
 

@@ -50,6 +50,13 @@ public class MainActivity extends Fullscreen {
 
     }
 
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        delayedHide();
+    }
+
     private void launchInboxActivity() {
         Toast.makeText(this, "launchInboxActivity()", Toast.LENGTH_SHORT).show();
     }
