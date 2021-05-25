@@ -15,6 +15,7 @@ public class Fullscreen extends AppCompatActivity {
     static final int UI_ANIMATION_DELAY = 300;
     final Handler mHideHandler = new Handler();
     View mContentView;
+
     final Runnable mHidePart2Runnable = new Runnable() {
         @SuppressLint("InlinedApi")
         @Override

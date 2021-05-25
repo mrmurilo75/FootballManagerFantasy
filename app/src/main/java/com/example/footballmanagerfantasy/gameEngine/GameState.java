@@ -1,29 +1,30 @@
 package com.example.footballmanagerfantasy.gameEngine;
 
 import android.content.Context;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Random;
+import java.util.PriorityQueue;
 
 
 public class GameState implements Serializable{
 
     private static final String gameStateFile = "gameState.ser";
 
-    Context context;
+//    Context context;
     HashMap<Integer, League> clubsAndPlayers;
     int currentRound;
+    String playerClub;
+    int playerDivision;
 
-    public GameState(Context ct) {
+    public GameState() {
         currentRound = 0;
-        context = ct;
+//        context = ct;
         clubsAndPlayers = new HashMap<>();
         initialize();
         for(int leagueName : clubsAndPlayers.keySet()){
@@ -33,7 +34,55 @@ public class GameState implements Serializable{
                 l.clubs.get(clubName).assignPositions();
             }
         }
-        saveGameState();
+//        saveGameState();
+    }
+
+    public void initializePlayer(String club,String name){
+        playerDivision = 2;
+        playerClub = club;
+        clubsAndPlayers.get(playerDivision).clubs.get(club).manager = new Manager(name,35);
+    }
+
+    public LinkedList<String> getClubsOfDivision(int division) {
+        LinkedList<String> clubNames = new LinkedList<>();
+
+        for( String clubName : clubsAndPlayers.get(division).clubs.keySet() ){
+            if( clubsAndPlayers.get(division).clubs.get(clubName).minObjective == 16 ){
+                clubNames.add(clubName);
+            }
+        }
+
+        return clubNames;
+    }
+    public LinkedList<NameAndObj> getClassification(){
+
+        LinkedList<NameAndObj> classification = new LinkedList<>();
+        PriorityQueue<NameAndObj> list = new PriorityQueue<>(clubsAndPlayers.get(playerDivision).clubs.size(), (r1,r2) -> {
+            Club c1 = (Club)r1.obj;
+            Club c2 = (Club)r1.obj;
+            return c1.points - c2.points;
+            } ); //adicionar caso mesmos pontos
+
+        for( String clubName : clubsAndPlayers.get(playerDivision).clubs.keySet()){
+            Club c = clubsAndPlayers.get(playerDivision).clubs.get(clubName);
+            list.add(new NameAndObj(clubName,c));
+        }
+
+        while (!list.isEmpty()) {
+            NameAndObj no = list.poll();
+            classification.add(no);
+        }
+        return classification;
+    }
+
+    public String[] getPlayerNextGame(){
+        LinkedList<Game> games = clubsAndPlayers.get(playerDivision).calendar.get(currentRound);
+        for( Game g : games ){
+            if(g.home.equals(playerClub) || g.away.equals(playerClub)){
+                return new String[]{g.home,g.away};
+            }
+        }
+        return null;
     }
 
     /**
@@ -104,13 +153,13 @@ public class GameState implements Serializable{
     /**
     Saves the current game state, should be executed to save the game
      */
-    public void saveGameState(){
+    public void saveGameState(Context ct){
 
         FileOutputStream fos = null;
         ObjectOutputStream out = null;
 
         try{
-            fos = context.openFileOutput(gameStateFile, Context.MODE_PRIVATE);
+            fos = ct.openFileOutput(gameStateFile, Context.MODE_PRIVATE);
             out = new ObjectOutputStream(fos);
             out.writeObject(this);
             out.close();

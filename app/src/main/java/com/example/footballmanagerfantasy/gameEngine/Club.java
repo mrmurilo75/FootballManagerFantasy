@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
-class Club implements Serializable {
+public class Club implements Serializable {
 
     /**
      * Minimum of : 2 goolkepers
@@ -13,14 +13,14 @@ class Club implements Serializable {
      *              5 atackers
      */
 
-    int points;
-    int wins;
-    int draws;
-    int losses;
-    int goalsConceded;
-    int goalsScored;
-    int minObjective;
-    int maxObjective;
+    public int points;
+    public int wins;
+    public int draws;
+    public int losses;
+    public int goalsConceded;
+    public int goalsScored;
+    public int minObjective;
+    public int maxObjective;
     Manager manager;
     Trainer offTrainer;
     Trainer deffTrainer;
