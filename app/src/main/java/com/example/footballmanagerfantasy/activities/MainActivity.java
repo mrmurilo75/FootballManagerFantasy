@@ -1,5 +1,6 @@
 package com.example.footballmanagerfantasy.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class MainActivity extends Fullscreen {
 
         mVisible = true;
         mContentView = binding.mainContent;
+        hide();
 
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(view -> toggle());
@@ -51,19 +53,14 @@ public class MainActivity extends Fullscreen {
 
     }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        delayedHide();
-    }
-
     private void launchInboxActivity() {
         Toast.makeText(this, "launchInboxActivity()", Toast.LENGTH_SHORT).show();
     }
 
     private void launchMarketActivity() {
         Toast.makeText(this, "launchMarketActivity()", Toast.LENGTH_SHORT).show();
+
+        startActivity(new Intent(this, MarketActivity.class));
     }
 
     private void launchTacticsActivity() {
