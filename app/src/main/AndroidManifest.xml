@@ -44,6 +44,12 @@
             android:label="Main Activity"
             android:screenOrientation="landscape">
         </activity>
+
+        <activity android:name=".activities.ResultTable"
+            android:label="resultTable"
+            android:screenOrientation="landscape"
+            android:parentActivityName=".activities.MainActivity">
+        </activity>
     </application>
 
 </manifest>

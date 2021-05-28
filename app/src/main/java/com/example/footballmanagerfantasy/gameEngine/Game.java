@@ -3,11 +3,11 @@ package com.example.footballmanagerfantasy.gameEngine;
 import java.io.Serializable;
 import java.util.Arrays;
 
-class Game implements Serializable {
+public class Game implements Serializable {
 
-    String home;
-    String away;
-    int[] result;
+    public String home;
+    public String away;
+    public int[] result;
 
     public Game(String home, String away){
         this.home = home;

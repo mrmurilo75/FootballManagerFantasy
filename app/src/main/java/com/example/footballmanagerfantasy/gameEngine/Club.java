@@ -72,7 +72,7 @@ public class Club implements Serializable {
      * that position than that name is "empty".
      * See comment in method to understand.
      */
-     /* ----------------------
+    /* ----------------------
      *  |     ---------      |
      *  |     |       |      |
      *  |                    |
@@ -90,10 +90,10 @@ public class Club implements Serializable {
 
         String[] p = new String[26];
 
-       for(int i = 0; i < p.length;i++){
-           p[i] = getPos(i);
-       }
-       return p;
+        for(int i = 0; i < p.length;i++){
+            p[i] = getPos(i);
+        }
+        return p;
     }
 
     private String getPos(int pos){
@@ -145,18 +145,19 @@ public class Club implements Serializable {
             else if(p.fieldPos <= 20) { avgOffMid += p.rank; offMidC++; }
             else { avgAtt += p.rank; attC++; }
         }
+
         gk /= 100;
-        avgDef = (avgDef / defC) / 100;
-        if(defMidC != 0) avgDefMid = (avgDefMid/defMidC) / 100;
-        avgMid = (avgMid/midC) / 100;
-        if(avgOffMid != 0) avgOffMid = (avgOffMid / offMidC) / 100;
-        avgAtt = (avgAtt / attC) / 100;
+        if( defC != 0 )      avgDef = (avgDef / defC) / 100;
+        if( defMidC != 0 )   avgDefMid = (avgDefMid/defMidC) / 100;
+        if( midC != 0 )      avgMid = (avgMid/midC) / 100;
+        if( avgOffMid != 0 ) avgOffMid = (avgOffMid / offMidC) / 100;
+        if( attC != 0 )      avgAtt = (avgAtt / attC) / 100;
 
         double chanceToScore = (attC * 0.1 + offMidC * 0.07 + midC * 0.05) + ( 0.2 * (avgAtt * 0.5 + avgOffMid * 0.3 + avgMid * 0.2) );
-        double chanceToDefend = (defC * 0.1 + defMidC * 0.07 + midC * 0.05) + ( 0.2 * (avgDef * 0.5 + avgDefMid * 0.3 + avgMid * 0.2) ) + (0.1 * gk);
+        double chanceToDefend = (defC * 0.08 + defMidC * 0.06 + midC * 0.04) + ( 0.2 * (avgDef * 0.5 + avgDefMid * 0.3 + avgMid * 0.2) ) + (0.1 * gk);
 
-        int numberChances = tactics.playStyle == Tactics.PlayStyle.Offensive ? 6 :
-                tactics.playStyle == Tactics.PlayStyle.Balance ? 4 : 2;
+        int numberChances = tactics.playStyle == Tactics.PlayStyle.Offensive ? 8 :
+                tactics.playStyle == Tactics.PlayStyle.Balance ? 6 : 4;
 
         if(tactics.attackStyle == Tactics.AttackStyle.Possession && tactics.passStyle == Tactics.PassStyle.Short){
             chanceToScore += 0.1;
@@ -167,18 +168,20 @@ public class Club implements Serializable {
         else if(tactics.attackStyle == Tactics.AttackStyle.UseWings && tactics.passStyle == Tactics.PassStyle.Long){
             chanceToScore += 0.1;
         }
+
         if(tactics.shootingStyle == Tactics.ShootingStyle.OnSight){
             chanceToScore -= 0.1;
-            numberChances++;
+            numberChances += 1;
         }
         else if(tactics.shootingStyle == Tactics.ShootingStyle.InsideTheArea){
             chanceToScore += 0.1;
-            numberChances--;
+            numberChances -= 1;
         }
+
         if(tactics.defenseStyle == Tactics.DefenseStyle.HighLine && tactics.marking == Tactics.Marking.Zone){
             chanceToDefend += 0.1;
         }
-        if(tactics.defenseStyle == Tactics.DefenseStyle.LowLine && tactics.marking == Tactics.Marking.ManToMan){
+        else if(tactics.defenseStyle == Tactics.DefenseStyle.LowLine && tactics.marking == Tactics.Marking.ManToMan){
             chanceToDefend += 0.1;
         }
 

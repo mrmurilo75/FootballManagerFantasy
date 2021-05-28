@@ -1,8 +1,13 @@
 package com.example.footballmanagerfantasy.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 
+import androidx.annotation.Nullable;
+
+import com.example.footballmanagerfantasy.R;
 import com.example.footballmanagerfantasy.databinding.ActivityNewGameBinding;
 import com.example.footballmanagerfantasy.gameEngine.GameEngine;
 import com.example.footballmanagerfantasy.gameEngine.GameState;
@@ -21,28 +26,15 @@ public class NewGameActivity extends Fullscreen {
         binding = ActivityNewGameBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-//        mVisible = true;
-        mContentView = binding.mainContent;
-
-        // Show or hide the system UI.
-//        mContentView.setOnClickListener(view -> toggle());
-
         binding.buttonNextNewGame.setOnClickListener(view -> launchChooseTeamActivity());
     }
 
     private void launchChooseTeamActivity() {
-
+        setContentView(R.layout.activity_spinner);
         String playerName = binding.editTextNameNewGame.getText().toString();
-//        Toast.makeText(this, "launchChooseTeamActivity() for "+ playerName, Toast.LENGTH_SHORT).show();
         Intent intent =  new Intent(this, ChooseTeamActivity.class);
         intent.putExtra(EXTRA_NAME, playerName);
-        startActivity(intent);
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        delayedHide();
+        startActivityForResult(intent,0);
+        finish();
     }
 }

@@ -3,8 +3,11 @@ package com.example.footballmanagerfantasy.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
+import com.example.footballmanagerfantasy.R;
 import com.example.footballmanagerfantasy.databinding.ActivityChooseTeamBinding;
 import com.example.footballmanagerfantasy.gameEngine.GameEngine;
 import com.example.footballmanagerfantasy.gameEngine.GameState;
@@ -18,17 +21,13 @@ public class ChooseTeamActivity extends Fullscreen {
     private GameState gs = GameEngine.getGameState(); // contains all the info on the game state
     String playerName;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityChooseTeamBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-//        mVisible = true;
-        mContentView = binding.mainContent;
-        hide();
-        // Show or hide the system UI.
-//        mContentView.setOnClickListener(view -> toggle());
 
+        binding = ActivityChooseTeamBinding.inflate(getLayoutInflater());
+//        setContentView(binding.getRoot());
         LinkedList<String> clubNames = gs.getClubsOfDivision(lastDivision);
 
         for(View v : binding.table.getTouchables() ){
@@ -41,12 +40,14 @@ public class ChooseTeamActivity extends Fullscreen {
         Intent intent = getIntent();
         playerName = intent.getStringExtra(NewGameActivity.EXTRA_NAME);
 
+        setContentView(binding.getRoot());
     }
 
     private void chooseTeam(String team) {
-        // TODO Create new player with chosen team
-        gs.initializePlayer(team,playerName);
+        setContentView(R.layout.activity_spinner);
+        gs.initializePlayer(team, playerName);
         // Launch MainActivity
         startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }
