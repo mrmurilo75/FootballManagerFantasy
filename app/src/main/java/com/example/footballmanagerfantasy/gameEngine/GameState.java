@@ -1,29 +1,31 @@
 package com.example.footballmanagerfantasy.gameEngine;
 
 import android.content.Context;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Random;
+import java.util.PriorityQueue;
 
 
 public class GameState implements Serializable{
 
     private static final String gameStateFile = "gameState.ser";
 
-    Context context;
+    //    Context context;
     HashMap<Integer, League> clubsAndPlayers;
     int currentRound;
+    String playerClub;
+    int playerDivision;
 
-    public GameState(Context ct) {
+    public GameState() {
         currentRound = 0;
-        context = ct;
+//        context = ct;
         clubsAndPlayers = new HashMap<>();
         initialize();
         for(int leagueName : clubsAndPlayers.keySet()){
@@ -33,7 +35,71 @@ public class GameState implements Serializable{
                 l.clubs.get(clubName).assignPositions();
             }
         }
-        saveGameState();
+//        saveGameState();
+    }
+
+    public void initializePlayer(String club,String name){
+        playerDivision = 2;
+        playerClub = club;
+        clubsAndPlayers.get(playerDivision).clubs.get(club).manager = new Manager(name,35);
+    }
+
+    public LinkedList<String> getClubsOfDivision(int division) {
+        LinkedList<String> clubNames = new LinkedList<>();
+
+        for( String clubName : clubsAndPlayers.get(division).clubs.keySet() ){
+            if( clubsAndPlayers.get(division).clubs.get(clubName).minObjective == 16 ){
+                clubNames.add(clubName);
+            }
+        }
+
+        return clubNames;
+    }
+
+    public Club getClub(int division,String name){
+        return clubsAndPlayers.get(division-1).clubs.get(name);
+    }
+
+    public LinkedList<NameAndObj> getClassification(){
+
+        LinkedList<NameAndObj> classification = new LinkedList<>();
+        PriorityQueue<NameAndObj> list = new PriorityQueue<>(clubsAndPlayers.get(playerDivision).clubs.size(), (c1,c2) -> {
+            Club cl1 = (Club)c1.obj;
+            Club cl2 = (Club)c2.obj;
+            if(cl1.points == cl2.points){
+                int goalDiff1 = cl1.goalsScored - cl1.goalsConceded;
+                int goalDiff2 = cl2.goalsScored - cl2.goalsConceded;
+                return goalDiff2 - goalDiff1;
+            }
+            return cl2.points - cl1.points;
+        } );
+
+        for( String clubName : clubsAndPlayers.get(playerDivision).clubs.keySet()){
+            Club c = clubsAndPlayers.get(playerDivision).clubs.get(clubName);
+            list.add(new NameAndObj(clubName,c));
+        }
+
+        while (!list.isEmpty()) {
+            NameAndObj no = list.poll();
+//            Club c = (Club)no.obj;
+//            System.out.println(c.points);
+            classification.addLast(no);
+        }
+        return classification;
+    }
+
+    public LinkedList<Game> getRoundResults(){
+        return clubsAndPlayers.get(playerDivision).calendar.get(currentRound - 1);
+    }
+
+    public String[] getPlayerNextGame(){
+        LinkedList<Game> games = clubsAndPlayers.get(playerDivision).calendar.get(currentRound);
+        for( Game g : games ){
+            if(g.home.equals(playerClub) || g.away.equals(playerClub)){
+                return new String[]{g.home,g.away};
+            }
+        }
+        return null;
     }
 
     /**
@@ -46,10 +112,8 @@ public class GameState implements Serializable{
 
             for( Game g : l.calendar.get(currentRound) ){
 
-                Club homeTeam = l.clubs.get(g.away);
-                Club awayTeam = l.clubs.get(g.home);
-//                System.out.println("home : " + homeTeam);
-//                System.out.println("away : " + awayTeam);
+                Club homeTeam = l.clubs.get(g.home);
+                Club awayTeam = l.clubs.get(g.away);
 
                 double homeTeamChances[] = homeTeam.getChances();
                 double awayTeamChances[] = awayTeam.getChances();
@@ -59,10 +123,14 @@ public class GameState implements Serializable{
 
                 int nHome = (int)homeTeamChances[2];
                 int nAway = (int)awayTeamChances[2];
-
-//                System.out.println("home : " + Arrays.toString(homeTeamChances));
-//                System.out.println("away : " + Arrays.toString(awayTeamChances));
-
+                if(playerDivision == key) {
+                    System.out.println(g.home);
+                    System.out.println(g.away);
+                    System.out.println("home : " + homeTeam);
+                    System.out.println("away : " + awayTeam);
+                    System.out.println("home : " + Arrays.toString(homeTeamChances));
+                    System.out.println("away : " + Arrays.toString(awayTeamChances));
+                }
                 for(int i = 0; i < nHome;i++){
                     if( Math.random() < homeTeamChances[1] && Math.random() > awayTeamChances[0] ){
                         homeGoals++;
@@ -102,15 +170,15 @@ public class GameState implements Serializable{
     }
 
     /**
-    Saves the current game state, should be executed to save the game
+     Saves the current game state, should be executed to save the game
      */
-    public void saveGameState(){
+    public void saveGameState(Context ct){
 
         FileOutputStream fos = null;
         ObjectOutputStream out = null;
 
         try{
-            fos = context.openFileOutput(gameStateFile, Context.MODE_PRIVATE);
+            fos = ct.openFileOutput(gameStateFile, Context.MODE_PRIVATE);
             out = new ObjectOutputStream(fos);
             out.writeObject(this);
             out.close();
@@ -132,7 +200,7 @@ public class GameState implements Serializable{
     }
 
     /**
-    Loads the current saved game if exists or returns null if does't
+     Loads the current saved game if exists or returns null if does't
      */
     public static GameState loadGameState(Context context){
 

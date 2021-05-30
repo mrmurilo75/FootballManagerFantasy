@@ -2,69 +2,55 @@ package com.example.footballmanagerfantasy.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-
+import android.os.Handler;
+import com.example.footballmanagerfantasy.R;
 import com.example.footballmanagerfantasy.databinding.ActivityStartBinding;
+import com.example.footballmanagerfantasy.gameEngine.GameEngine;
+import com.example.footballmanagerfantasy.gameEngine.GameState;
 
 public class StartActivity extends Fullscreen{
 
     private ActivityStartBinding binding;
+    private GameState gs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityStartBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_spinner);
 
-        mVisible = true;
-        mContentView = binding.mainContent;
-
-        hide();
-
-        // Set up the user interaction to manually show or hide the system UI.
-        mContentView.setOnClickListener(view -> toggle());
-
-        binding.newGame.setOnClickListener(view -> launchNewGameActivity());
+        new Handler().postDelayed(() -> {
+            binding = ActivityStartBinding.inflate(getLayoutInflater());
+            setContentView(binding.getRoot());
+            binding.loadGame.setOnClickListener(view -> launchMainActivity());
+            binding.newGame.setOnClickListener(view -> launchNewGameActivity());
+        },1000);
     }
 
     private void launchNewGameActivity() {
-//        Toast.makeText(this, "launchNewGameActivity()", Toast.LENGTH_SHORT).show();
+        setContentView(R.layout.activity_spinner);
+//        new Thread(() ->{
+        GameEngine.setGameState(new GameState());
+        startActivityForResult(new Intent(this, NewGameActivity.class),0);
+        finish();
+//        }).start();
+    }
 
-        startActivity(new Intent(this, NewGameActivity.class));
+    private void launchMainActivity(){
+
+        setContentView(R.layout.activity_spinner);
+        GameState gs = GameState.loadGameState(this);
+        if(gs == null) {
+            //TODO show message to user that there is no game saved and a new Game is going to be created
+            gs = new GameState();
+            GameEngine.setGameState(gs);
+            startActivity(new Intent(this, NewGameActivity.class));
+        }
+        else {
+            GameEngine.setGameState(gs);
+            startActivity(new Intent(this, MainActivity.class));
+        }
+        finish();
     }
 
 }
-
-/*
-public class MainActivity extends AppCompatActivity {
-
-    Context context;
-    //contains all the info of the current game
-    GameState gameState;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        context = this;
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        getSupportActionBar().hide();
-
-        findViewById(R.id.newGame).setOnClickListener(v -> {
-            gameState = new GameState(context); //crates a new Game
-        });
-        findViewById(R.id.loadGame).setOnClickListener(v -> {
-            gameState = GameState.loadGameState(context); //loads the existing game
-            if(gameState == null) {
-                //TODO file doesn't exists, show error message and create new Game
-            }
-            //TODO change to the main menu, with is empty
-            setContentView(R.layout.main_menu);
-        });
-
-    }
-}
-
- */

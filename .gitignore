@@ -1,4 +1,5 @@
-local.*
-.idea
 .gradle
+.idea
+local.*
+build.gradle
 

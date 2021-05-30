@@ -2,11 +2,7 @@
 package com.example.footballmanagerfantasy.gameEngine;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 public class Tactics implements Serializable {
@@ -116,6 +112,7 @@ public class Tactics implements Serializable {
 
     /**
      * Possible positions in the field
+     *
      *
      * | 21  22  23  24  25 | Strikers
      * | 16  17  18  19  20 | Offensive Midfielder

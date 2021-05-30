@@ -1,13 +1,22 @@
 package com.example.footballmanagerfantasy.activities;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.footballmanagerfantasy.R;
 import com.example.footballmanagerfantasy.databinding.ActivityMainBinding;
+import com.example.footballmanagerfantasy.gameEngine.Club;
+import com.example.footballmanagerfantasy.gameEngine.GameEngine;
+import com.example.footballmanagerfantasy.gameEngine.GameState;
+import com.example.footballmanagerfantasy.gameEngine.NameAndObj;
 
 import java.util.LinkedList;
 
@@ -19,18 +28,73 @@ public class MainActivity extends Fullscreen {
     private PositionListAdapter positionsAdapter;
     private LinkedList<String> positionsList;
 
+    private GameState gs = GameEngine.getGameState(); // contains all the info on the game state
+
+
+    class CustomTextView extends androidx.appcompat.widget.AppCompatTextView{
+
+        final float scale = getResources().getDisplayMetrics().density;
+
+        public CustomTextView(Context context) {
+            super(context);
+            int dp10 = (int) (10 * scale + 0.5f);
+            setTextColor(getResources().getColor(R.color.white));
+            setTextSize(dp10);
+        }
+    }
+    class CustomTableRow extends TableRow{
+
+        TextView tname;
+        TextView tplayed;
+        TextView tv;
+        TextView td;
+        TextView tl;
+        TextView tgf;
+        TextView tga;
+        TextView tpoints;
+
+        public CustomTableRow(Context context) {
+            super(context);
+            tname = new CustomTextView(context);
+            tplayed = new CustomTextView(context);
+            tv = new CustomTextView(context);
+            td = new CustomTextView(context);
+            tl = new CustomTextView(context);
+            tgf = new CustomTextView(context);
+            tga = new CustomTextView(context);
+            tpoints = new CustomTextView(context);
+            addView(tname);
+            addView(tplayed);
+            addView(tv);
+            addView(td);
+            addView(tl);
+            addView(tgf);
+            addView(tga);
+            addView(tpoints);
+        }
+
+        @SuppressLint("SetTextI18n")
+        public void updateValues(Context context, NameAndObj n){
+            Club c = (Club)n.obj;
+            String name = n.name;
+            tname.setText(name);
+            tplayed.setText(c.draws + c.losses + c.wins + "");
+            tv.setText(c.wins + "");
+            td.setText(c.draws+"");
+            tl.setText(c.losses+"");
+            tgf.setText(c.goalsScored+"");
+            tga.setText(c.goalsConceded+"");
+            tpoints.setText(c.points+"");
+        }
+
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        mVisible = true;
-        mContentView = binding.mainContent;
-        hide();
-
-        // Set up the user interaction to manually show or hide the system UI.
-        mContentView.setOnClickListener(view -> toggle());
 
         binding.buttonInboxMain.setOnClickListener(view -> launchInboxActivity());
 
@@ -40,17 +104,46 @@ public class MainActivity extends Fullscreen {
 
         binding.button4Main.setOnClickListener(view -> testToast());
 
-        // place holder
-        positionsList = new LinkedList<>();
-        for(int i = 0; i < 18; i++)
-            positionsList.add("Team "+ ((i<10)? "0"+i : i) );
+        updateClassification(true);
+        updateImages();
+        setContentView(binding.getRoot());
+    }
 
-        positionsView = binding.recyclerPositionsMain;
-        positionsAdapter = new PositionListAdapter(this, positionsList);
-        positionsView.setAdapter(positionsAdapter);
-        positionsView.setLayoutManager(new LinearLayoutManager(this));
+    public void updateImages(){
+        String[] nextGame = gs.getPlayerNextGame();
+        String home = nextGame[0];
+        String away = nextGame[1];
+        home = home.toLowerCase().replace(' ','_');
+        away = away.toLowerCase().replace(' ','_');
+        int id1 = getResources().getIdentifier(home, "drawable", getPackageName());
+        int id2 = getResources().getIdentifier(away, "drawable", getPackageName());
+        binding.imageTeam01Main.setImageResource(id1);
+        binding.imageTeam02Main.setImageResource(id2);
+    }
 
+    public void updateClassification(boolean create){
+        if(create) {
+            for (NameAndObj n : gs.getClassification()) {
+                CustomTableRow t = new CustomTableRow(this);
+                t.updateValues(this,n);
+                binding.classificationTable.addView(t);
+            }
+        }
+        else{
+            int i = 1;
+            for (NameAndObj n : gs.getClassification()) {
+                CustomTableRow row = (CustomTableRow)binding.classificationTable.getChildAt(i);
+                row.updateValues(this,n);
+                i++;
+            }
+            updateImages();
+        }
+    }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        updateClassification(false);
     }
 
     private void launchInboxActivity() {
@@ -64,14 +157,14 @@ public class MainActivity extends Fullscreen {
     }
 
     private void launchTacticsActivity() {
-        Toast.makeText(this, "launchTacticsActivity()", Toast.LENGTH_SHORT).show();
-
-
-        startActivity(new Intent(this, TacticsActivity.class));
+        setContentView(R.layout.activity_tactics);
+//        Toast.makeText(this, "launchTacticsActivity()", Toast.LENGTH_SHORT).show();
     }
 
     private void nextGame() {
-        Toast.makeText(this, "Next Game", Toast.LENGTH_SHORT).show();
+//        setContentView(R.layout.activity_spinner);
+        gs.simulateGames();
+        startActivity(new Intent(this, ResultTable.class));
     }
 
     private void testToast() {
