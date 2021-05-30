@@ -155,7 +155,8 @@ public class MainActivity extends Fullscreen {
     }
 
     private void launchTacticsActivity() {
-        Toast.makeText(this, "launchTacticsActivity()", Toast.LENGTH_SHORT).show();
+        setContentView(R.layout.activity_tactics);
+//        Toast.makeText(this, "launchTacticsActivity()", Toast.LENGTH_SHORT).show();
     }
 
     private void nextGame() {

@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.TacticsActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:id="@+id/formation"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:background="@drawable/pitch1"
+                android:gravity="center|center_horizontal">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/imageView28"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_1"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_6"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_11"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_16"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_22"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/imageView34"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/pos_2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_7"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_12"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_17"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_23"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/pos_0"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_3"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_8"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_13"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_18"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_24"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/imageView46"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/pos_4"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_9"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_14"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_19"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_25"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:id="@+id/imageView52"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/pos_5"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_10"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_15"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_20"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+
+                    <ImageView
+                        android:id="@+id/pos_26"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/circle"
+                        tools:layout_editor_absoluteX="190dp" />
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="900dp"
+                android:background="@drawable/board"
+                android:padding="40dp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingTop="20dp">
+
+                    <TextView
+                        android:id="@+id/play_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Play Style"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/offensive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="Offensive"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="Balance"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/deffensive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="Defensive"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingTop="20dp">
+
+                    <TextView
+                        android:id="@+id/pass_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Pass Style"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/pass_short"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="Short"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/pass_long"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="Long"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/pass_direct"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="Direct"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingTop="20dp">
+
+                    <TextView
+                        android:id="@+id/attack_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Attack Style"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/possession"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="Possession"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/counter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="Counter"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/use_wings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="Use Wings"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingTop="20dp">
+
+                    <TextView
+                        android:id="@+id/defense_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Defense Style"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/high_line"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="High Line"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/low_line"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="Low Line"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingTop="20dp">
+
+                    <TextView
+                        android:id="@+id/shooting_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Shooting Style"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/on_sight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="On Sight"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/inside_the_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="Inside The Area"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingTop="20dp">
+
+                    <TextView
+                        android:id="@+id/marking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Marking"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/man_to_man"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="Man To Man"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/zone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="Zone"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
+
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

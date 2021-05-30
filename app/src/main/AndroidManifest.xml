@@ -50,6 +50,16 @@
             android:screenOrientation="landscape"
             android:parentActivityName=".activities.MainActivity">
         </activity>
+        <activity android:name=".activities.TacticsActivity"
+            android:label="Tactics"
+            android:screenOrientation="landscape"
+            android:parentActivityName=".activities.MainActivity">
+        </activity>
+        <activity android:name=".activities.TacticsChoosePlayer"
+            android:label="choose player"
+            android:screenOrientation="landscape"
+            android:parentActivityName=".activities.TacticsActivity">
+        </activity>
     </application>
 
 </manifest>
