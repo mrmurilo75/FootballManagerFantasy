@@ -19,6 +19,8 @@ public class StartActivity extends Fullscreen{
         mVisible = true;
         mContentView = binding.mainContent;
 
+        hide();
+
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(view -> toggle());
 
@@ -31,15 +33,6 @@ public class StartActivity extends Fullscreen{
         startActivity(new Intent(this, NewGameActivity.class));
     }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        // Trigger the initial hide() shortly after the activity has been
-        // created, to briefly hint to the user that UI controls
-        // are available.
-        delayedHide();
-    }
 }
 
 /*

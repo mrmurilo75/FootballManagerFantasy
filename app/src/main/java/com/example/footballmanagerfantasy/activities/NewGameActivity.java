@@ -19,6 +19,7 @@ public class NewGameActivity extends Fullscreen {
 
         mVisible = true;
         mContentView = binding.mainContent;
+        hide();
 
         // Show or hide the system UI.
         mContentView.setOnClickListener(view -> toggle());
@@ -37,10 +38,4 @@ public class NewGameActivity extends Fullscreen {
         startActivity(intent);
     }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        delayedHide();
-    }
 }

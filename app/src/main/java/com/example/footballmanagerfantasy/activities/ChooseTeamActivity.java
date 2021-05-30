@@ -18,6 +18,8 @@ public class ChooseTeamActivity extends Fullscreen {
         setContentView(binding.getRoot());
         mVisible = true;
         mContentView = binding.mainContent;
+        hide();
+
         // Show or hide the system UI.
         mContentView.setOnClickListener(view -> toggle());
 
@@ -33,12 +35,6 @@ public class ChooseTeamActivity extends Fullscreen {
 
     }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        delayedHide();
-    }
 
     private void chooseTeam(int chosenTeam) {
         // TODO Create new player with chosen team
