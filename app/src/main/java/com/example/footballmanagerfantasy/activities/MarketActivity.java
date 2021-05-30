@@ -1,14 +1,11 @@
 package com.example.footballmanagerfantasy.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
-import android.os.Bundle;
-
 import com.example.footballmanagerfantasy.databinding.ActivityMarketBinding;
-import com.example.footballmanagerfantasy.databinding.ActivityTacticsBinding;
 
 import java.util.LinkedList;
 
@@ -18,7 +15,7 @@ public class MarketActivity extends Fullscreen {
 
     private RecyclerView productsView;
     private ProductListAdapter productsAdapter;
-    private LinkedList<String> productsList;
+    private LinkedList<String> productsList, productValueList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +34,14 @@ public class MarketActivity extends Fullscreen {
 
 //        binding.newGame.setOnClickListener(view -> launchNewGameActivity());
         productsList = new LinkedList<>();
-        for(int i = 0; i < 18; i++)
-            productsList.add("Team "+ ((i<10)? "0"+i : i) );
+        productValueList = new LinkedList<>();
+        for(int i = 0; i < 18; i++) {
+            productsList.add("Product " + ((i < 10) ? "0" + i : i));
+            productValueList.add(((i < 10) ? "0" + i : "" + i));
+        }
 
         productsView = binding.recyclerProductMarket;
-        productsAdapter = new ProductListAdapter(this, productsList);
+        productsAdapter = new ProductListAdapter(this, productsList, productValueList);
         productsView.setAdapter(productsAdapter);
         productsView.setLayoutManager(new LinearLayoutManager(this));
     }
