@@ -1,11 +1,258 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/stadium"
     tools:context=".activities.TacticsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:padding="16dp"
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow
+                android:padding="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:background="@color/purple_500"
+                    android:textColor="@color/white"
+                    android:layout_margin="8dp"
+                    android:padding="8dp"
+                    android:text="@string/tactic_01"
+                    android:layout_weight="1"
+                    />
+
+                <RadioGroup
+                    android:id="@+id/tactic_02"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+
+                    <RadioButton
+                        android:layout_marginTop="8dp"
+                        android:background="@color/white"
+                        android:id="@+id/tact01_opt01"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/tac01_opt01" />
+                    <RadioButton
+                        android:background="@color/white"
+                        android:id="@+id/tact01_opt02"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tact01_opt02"/>
+                    <RadioButton
+                        android:background="@color/white"
+                        android:id="@+id/tact01_opt03"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tact01_opt03"/>
+                </RadioGroup>
+            </TableRow>
+            <TableRow
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:background="@color/purple_500"
+                    android:textColor="@color/white"
+                    android:layout_margin="8dp"
+                    android:padding="8dp"
+                    android:text="@string/tactic_02"
+                    android:layout_weight="1"
+                    />
+
+                <RadioGroup
+                    android:id="@+id/tactic_03"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+
+                    <RadioButton
+                        android:layout_marginTop="8dp"
+                        android:background="@color/white"
+                        android:id="@+id/tact02_opt01"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/tact02_opt01"/>
+                    <RadioButton
+                        android:background="@color/white"
+                        android:id="@+id/tact02_opt02"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tact02_opt02"/>
+                    <RadioButton
+                        android:background="@color/white"
+                        android:id="@+id/tact02_opt03"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tact02_opt03"/>
+                </RadioGroup>
+            </TableRow>
+            <TableRow
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:background="@color/purple_500"
+                    android:textColor="@color/white"
+                    android:layout_margin="8dp"
+                    android:padding="8dp"
+                    android:text="@string/tactic_03"
+                    android:layout_weight="1"
+                    />
+
+                <RadioGroup
+                    android:id="@+id/tactic_04"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+
+                    <RadioButton
+                        android:layout_marginTop="8dp"
+                        android:background="@color/white"
+                        android:id="@+id/tact03_opt01"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/tact03_opt01"/>
+                    <RadioButton
+                        android:background="@color/white"
+                        android:id="@+id/tact03_opt02"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tact03_opt02"/>
+                    <RadioButton
+                        android:background="@color/white"
+                        android:id="@+id/tact03_opt03"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tact03_opt03"/>
+                </RadioGroup>
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:background="@color/purple_500"
+                    android:textColor="@color/white"
+                    android:layout_margin="8dp"
+                    android:padding="8dp"
+                    android:text="@string/tactic_04"
+                    android:layout_weight="1"
+                    />
+
+                <RadioGroup
+                    android:id="@+id/tactic_05"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+
+                    <RadioButton
+                        android:layout_marginTop="8dp"
+                        android:background="@color/white"
+                        android:id="@+id/tact04_opt01"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/tact04_opt01"/>
+                    <RadioButton
+                        android:background="@color/white"
+                        android:id="@+id/tact04_opt02"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tact04_opt02"/>
+                </RadioGroup>
+            </TableRow>
+            <TableRow
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:background="@color/purple_500"
+                    android:textColor="@color/white"
+                    android:layout_margin="8dp"
+                    android:padding="8dp"
+                    android:text="@string/tactic_05"
+                    android:layout_weight="1"
+                    />
+
+                <RadioGroup
+                    android:id="@+id/tactic_01"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+
+                    <RadioButton
+                        android:layout_marginTop="8dp"
+                        android:background="@color/white"
+                        android:id="@+id/tact05_opt01"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/tact05_opt01"/>
+                    <RadioButton
+                        android:background="@color/white"
+                        android:id="@+id/tact05_opt02"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tact05_opt02"/>
+                </RadioGroup>
+            </TableRow>
+            <TableRow
+                android:padding="8dp"
+                android:layout_marginBottom="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:background="@color/purple_500"
+                    android:textColor="@color/white"
+                    android:layout_margin="8dp"
+                    android:padding="8dp"
+                    android:text="@string/tactic_06"
+                    android:layout_weight="1"
+                    />
+
+                <RadioGroup
+                    android:id="@+id/tactic_06"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    >
+
+                    <RadioButton
+                        android:layout_marginTop="8dp"
+                        android:background="@color/white"
+                        android:id="@+id/tact06_opt01"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/tact06_opt01"/>
+                    <RadioButton
+                        android:background="@color/white"
+                        android:id="@+id/tact06_opt02"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tact06_opt02"/>
+                </RadioGroup>
+            </TableRow>
+        </TableLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

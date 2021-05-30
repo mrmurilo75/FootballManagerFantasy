@@ -65,6 +65,9 @@ public class MainActivity extends Fullscreen {
 
     private void launchTacticsActivity() {
         Toast.makeText(this, "launchTacticsActivity()", Toast.LENGTH_SHORT).show();
+
+
+        startActivity(new Intent(this, TacticsActivity.class));
     }
 
     private void nextGame() {

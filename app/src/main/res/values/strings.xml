@@ -16,4 +16,25 @@
     <string name="team_04">Team 04</string>
     <string name="team_05">Team 05</string>
     <string name="team_06">Team 06</string>
+    <string name="tactic_01">Play Style</string>
+    <string name="tactic_02">Pass Style</string>
+    <string name="tactic_03">Attack Style</string>
+    <string name="tactic_04">Defense Style</string>
+    <string name="tactic_05">Shooting Style</string>
+    <string name="tactic_06">Marking</string>
+    <string name="tac01_opt01">Offensive</string>
+    <string name="tact01_opt02">Defensive</string>
+    <string name="tact01_opt03">Balance</string>
+    <string name="tact02_opt01">Short</string>
+    <string name="tact02_opt02">Long</string>
+    <string name="tact02_opt03">Direct</string>
+    <string name="tact03_opt01">Possession</string>
+    <string name="tact03_opt02">Counter</string>
+    <string name="tact03_opt03">Use Wings</string>
+    <string name="tact04_opt01">High Line</string>
+    <string name="tact04_opt02">Low Line</string>
+    <string name="tact05_opt01">On Sight</string>
+    <string name="tact05_opt02">Inside The Area</string>
+    <string name="tact06_opt01">Man To Man</string>
+    <string name="tact06_opt02">Zone</string>
 </resources>

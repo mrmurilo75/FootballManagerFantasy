@@ -21,6 +21,7 @@ public class TacticsActivity extends Fullscreen {
 
         mVisible = true;
         mContentView = binding.mainContent;
+        hide();
 
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(view -> toggle());
@@ -28,10 +29,4 @@ public class TacticsActivity extends Fullscreen {
 //        binding.newGame.setOnClickListener(view -> launchNewGameActivity());
     }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        hide();
-    }
 }
