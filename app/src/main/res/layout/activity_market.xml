@@ -8,58 +8,102 @@
     android:background="@drawable/stadium"
     tools:context=".activities.MarketActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_product_market"
-        android:layout_margin="48dp"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
-<!--        android:layout_width="594dp"-->
-<!--        android:layout_height="254dp"-->
-<!--        android:padding="32dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/buy_button_market"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.6"-->
-<!--        />-->
+        android:layout_margin="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.166">
+
+        <TableLayout
+            android:id="@+id/products_table"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:id="@+id/products_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_500"
+                >
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type"
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="3"
+                    android:paddingStart="8dp"
+                    />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Name"
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="1"
+                    android:paddingStart="8dp"
+                    />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Age"
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="1"
+                    android:paddingStart="8dp"
+                    />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rank"
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="1"
+                    android:paddingStart="8dp"
+                    />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Position"
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="1"
+                    android:paddingStart="8dp"
+                    />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="1"
+                    android:paddingStart="8dp"
+                    />
 
 
-<!--    <Button-->
-<!--        android:id="@+id/buy_button_market"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Buy"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.9"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.9" />-->
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buy"
+                    android:textColor="#FFFFFF"
+                    android:layout_weight="1"
+                    android:paddingStart="8dp"
+                    />
+            </TableRow>
 
-<!--    <TextView-->
-<!--        android:id="@+id/text_total"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@color/white"-->
-<!--        android:padding="8dp"-->
-<!--        android:text="Total:"-->
-<!--        android:textColor="@color/purple_500"-->
-<!--        app:layout_constraintBaseline_toBaselineOf="@+id/sum_total_market"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/sum_total_market"-->
-<!--        app:layout_constraintHorizontal_bias="1.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/sum_total_market"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:padding="8dp"-->
-<!--        android:text="TotalSum"-->
-<!--        android:background="@color/white"-->
-<!--        android:textColor="@color/purple_500"-->
-<!--        app:layout_constraintBaseline_toBaselineOf="@+id/buy_button_market"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/buy_button_market"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+        </TableLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
