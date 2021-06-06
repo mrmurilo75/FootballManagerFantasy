@@ -11,13 +11,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Set;
 
 
 public class GameState implements Serializable{
 
     private static final String gameStateFile = "gameState.ser";
 
-    //    Context context;
     HashMap<Integer, League> clubsAndPlayers;
     int currentRound;
     String playerClub;
@@ -25,7 +25,6 @@ public class GameState implements Serializable{
 
     public GameState() {
         currentRound = 0;
-//        context = ct;
         clubsAndPlayers = new HashMap<>();
         initialize();
         for(int leagueName : clubsAndPlayers.keySet()){
@@ -41,7 +40,25 @@ public class GameState implements Serializable{
     public void initializePlayer(String club,String name){
         playerDivision = 2;
         playerClub = club;
-        clubsAndPlayers.get(playerDivision).clubs.get(club).manager = new Manager(name,35);
+        Club c = clubsAndPlayers.get(playerDivision).clubs.get(club);
+        c.manager = new Manager(name,35);
+
+    }
+
+    public Club getClub(){
+        return clubsAndPlayers.get(playerDivision).clubs.get(playerClub);
+    }
+
+    public Set<String> getTeamPlayers() {
+        return clubsAndPlayers.get(playerDivision).clubs.get(playerClub).players.keySet();
+    }
+
+    public Player getPlayer(String playerName){
+        return clubsAndPlayers.get(playerDivision).clubs.get(playerClub).players.get(playerName);
+    }
+
+    public Player getPlayer(int division,String club,String name){
+        return clubsAndPlayers.get(division).clubs.get(club).players.get(name);
     }
 
     public LinkedList<String> getClubsOfDivision(int division) {

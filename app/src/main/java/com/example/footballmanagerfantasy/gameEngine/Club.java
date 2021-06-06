@@ -21,11 +21,11 @@ public class Club implements Serializable {
     public int goalsScored;
     public int minObjective;
     public int maxObjective;
-    Manager manager;
-    Trainer offTrainer;
-    Trainer deffTrainer;
-    Medic medic;
-    Tactics tactics;
+    public Manager manager;
+    public Trainer offTrainer;
+    public Trainer deffTrainer;
+    public Medic medic;
+    public Tactics tactics;
 
     HashMap<String,Player> players = new HashMap<>();
 
@@ -84,6 +84,7 @@ public class Club implements Serializable {
      *  |     ---------      |
      *  |     |   0   |      | Goalkeeper
      *  ----------------------
+     *
      *
      */
     public String[] getOnfield(){
@@ -200,10 +201,10 @@ public class Club implements Serializable {
             }
         }
 
-        PriorityQueue<R> gk = new PriorityQueue<>(5,(p1,p2) -> p1.rank - p2.rank);
-        PriorityQueue<R> def = new PriorityQueue<>(5,(p1,p2) -> p1.rank - p2.rank);
-        PriorityQueue<R> mid = new PriorityQueue<>(5,(p1,p2) -> p1.rank - p2.rank);
-        PriorityQueue<R> att = new PriorityQueue<>(5,(p1,p2) -> p1.rank - p2.rank);
+        PriorityQueue<R> gk = new PriorityQueue<>(5,(p1,p2) -> p2.rank - p1.rank);
+        PriorityQueue<R> def = new PriorityQueue<>(5,(p1,p2) -> p2.rank - p1.rank);
+        PriorityQueue<R> mid = new PriorityQueue<>(5,(p1,p2) -> p2.rank - p1.rank);
+        PriorityQueue<R> att = new PriorityQueue<>(5,(p1,p2) -> p2.rank - p1.rank);
 
         for( String playerName : players.keySet()){
             Player p = players.get(playerName);
@@ -234,7 +235,7 @@ public class Club implements Serializable {
 
             for (int p : f) {
                 if (p <= 5) defCount++;
-                else if (p <= 15) midCount++;
+                else if (p <= 20) midCount++;
                 else attCount++;
             }
             if (defCount <= def.size() && midCount <= mid.size() && attCount <= att.size()) break;
@@ -244,11 +245,11 @@ public class Club implements Serializable {
 
         for(int p : formation){
             if (p <= 5) players.get(def.poll().name).fieldPos = p;
-            else if (p <= 15) players.get(mid.poll().name).fieldPos = p;
+            else if (p <= 20) players.get(mid.poll().name).fieldPos = p;
             else players.get(att.poll().name).fieldPos = p;
         }
         for(int i = -1; !att.isEmpty() ;i--){
-            R p = !gk.isEmpty() ? gk.poll() : !mid.isEmpty() ? mid.poll() : att.poll();
+            R p = !gk.isEmpty() ? gk.poll() : !def.isEmpty() ? def.poll() : !mid.isEmpty() ? mid.poll() : att.poll();
             players.get(p.name).fieldPos = i;
         }
     }

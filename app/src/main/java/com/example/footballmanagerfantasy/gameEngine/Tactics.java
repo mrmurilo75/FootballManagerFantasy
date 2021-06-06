@@ -49,13 +49,13 @@ public class Tactics implements Serializable {
 
     private static final Random random = RandomGenerator.r;
 
-    PlayStyle playStyle;
-    PassStyle passStyle;
-    AttackStyle attackStyle;
-    DefenseStyle defenseStyle;
-    ShootingStyle shootingStyle;
-    Marking marking;
-    int[] formation;
+    public PlayStyle playStyle;
+    public PassStyle passStyle;
+    public AttackStyle attackStyle;
+    public DefenseStyle defenseStyle;
+    public ShootingStyle shootingStyle;
+    public Marking marking;
+    public int[] formation;
 
     public Tactics(PlayStyle p, PassStyle pass, AttackStyle att, DefenseStyle def, ShootingStyle st, Marking mark) {
         playStyle = p;

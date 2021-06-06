@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.footballmanagerfantasy.R;
 import com.example.footballmanagerfantasy.databinding.ActivityMainBinding;
+import com.example.footballmanagerfantasy.databinding.ActivityTacticsBinding;
 import com.example.footballmanagerfantasy.gameEngine.Club;
 import com.example.footballmanagerfantasy.gameEngine.GameEngine;
 import com.example.footballmanagerfantasy.gameEngine.GameState;
@@ -74,7 +75,7 @@ public class MainActivity extends Fullscreen {
         }
 
         @SuppressLint("SetTextI18n")
-        public void updateValues(Context context, NameAndObj n){
+        public void updateValues(NameAndObj n){
             Club c = (Club)n.obj;
             String name = n.name;
             tname.setText(name);
@@ -125,7 +126,7 @@ public class MainActivity extends Fullscreen {
         if(create) {
             for (NameAndObj n : gs.getClassification()) {
                 CustomTableRow t = new CustomTableRow(this);
-                t.updateValues(this,n);
+                t.updateValues(n);
                 binding.classificationTable.addView(t);
             }
         }
@@ -133,7 +134,7 @@ public class MainActivity extends Fullscreen {
             int i = 1;
             for (NameAndObj n : gs.getClassification()) {
                 CustomTableRow row = (CustomTableRow)binding.classificationTable.getChildAt(i);
-                row.updateValues(this,n);
+                row.updateValues(n);
                 i++;
             }
             updateImages();
@@ -157,8 +158,7 @@ public class MainActivity extends Fullscreen {
     }
 
     private void launchTacticsActivity() {
-        setContentView(R.layout.activity_tactics);
-//        Toast.makeText(this, "launchTacticsActivity()", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, TacticsActivity.class));
     }
 
     private void nextGame() {

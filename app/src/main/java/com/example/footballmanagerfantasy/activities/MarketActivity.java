@@ -24,26 +24,26 @@ public class MarketActivity extends Fullscreen {
         binding = ActivityMarketBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        mVisible = true;
-        mContentView = binding.mainContent;
-
-        hide();
-
-        // Set up the user interaction to manually show or hide the system UI.
-        mContentView.setOnClickListener(view -> toggle());
-
-//        binding.newGame.setOnClickListener(view -> launchNewGameActivity());
-        productsList = new LinkedList<>();
-        productValueList = new LinkedList<>();
-        for(int i = 0; i < 18; i++) {
-            productsList.add("Product " + ((i < 10) ? "0" + i : i));
-            productValueList.add(((i < 10) ? "0" + i : "" + i));
-        }
-
-        productsView = binding.recyclerProductMarket;
-        productsAdapter = new ProductListAdapter(this, productsList, productValueList);
-        productsView.setAdapter(productsAdapter);
-        productsView.setLayoutManager(new LinearLayoutManager(this));
+//        mVisible = true;
+//        mContentView = binding.mainContent;
+//
+//        hide();
+//
+//        // Set up the user interaction to manually show or hide the system UI.
+//        mContentView.setOnClickListener(view -> toggle());
+//
+////        binding.newGame.setOnClickListener(view -> launchNewGameActivity());
+//        productsList = new LinkedList<>();
+//        productValueList = new LinkedList<>();
+//        for(int i = 0; i < 18; i++) {
+//            productsList.add("Product " + ((i < 10) ? "0" + i : i));
+//            productValueList.add(((i < 10) ? "0" + i : "" + i));
+//        }
+//
+//        productsView = binding.recyclerProductMarket;
+//        productsAdapter = new ProductListAdapter(this, productsList, productValueList);
+//        productsView.setAdapter(productsAdapter);
+//        productsView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 }
