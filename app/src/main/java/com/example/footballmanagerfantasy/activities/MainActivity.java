@@ -25,10 +25,6 @@ public class MainActivity extends Fullscreen {
 
     private ActivityMainBinding binding;
 
-    private RecyclerView positionsView;
-    private PositionListAdapter positionsAdapter;
-    private LinkedList<String> positionsList;
-
     private GameState gs = GameEngine.getGameState(); // contains all the info on the game state
 
 
