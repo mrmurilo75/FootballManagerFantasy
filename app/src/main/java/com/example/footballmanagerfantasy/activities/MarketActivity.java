@@ -3,72 +3,62 @@ package com.example.footballmanagerfantasy.activities;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.Toast;
 import android.widget.Button;
 import android.widget.TableRow;
-import android.widget.TextView;
-
 import com.example.footballmanagerfantasy.R;
 import com.example.footballmanagerfantasy.databinding.ActivityMarketBinding;
+import com.example.footballmanagerfantasy.gameEngine.GameEngine;
+import com.example.footballmanagerfantasy.gameEngine.GameState;
+import com.example.footballmanagerfantasy.gameEngine.NameAndObj;
+import com.example.footballmanagerfantasy.gameEngine.Player;
 
 public class MarketActivity extends Fullscreen {
 
     private ActivityMarketBinding binding;
+    private GameState gs = GameEngine.getGameState();
 
-    class CustomTextView extends androidx.appcompat.widget.AppCompatTextView{
+    class MarketText extends androidx.appcompat.widget.AppCompatTextView{
 
         final float scale = getResources().getDisplayMetrics().density;
         TableRow.LayoutParams layoutP;
 
-        public CustomTextView(Context context) {
+        public MarketText(Context context) {
             super(context);
             int dp10 = (int) (10 * scale + 0.5f);
-            setTextColor(getResources().getColor(R.color.white));
             setTextSize(dp10);
-
-            layoutP = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1);
+            setTextColor(getResources().getColor(R.color.black));
+            layoutP = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
             layoutP.weight = 1;
             setLayoutParams(layoutP);
         }
-
-        void setWeight(int w) {
-            layoutP.weight = w;
-            setLayoutParams(layoutP);
-        }
     }
-    class CustomTableRow extends TableRow {
+    class MarketRow extends TableRow {
 
-        TextView tType;
-        TextView tName;
-        TextView tAge;
-        TextView tRank;
-        TextView tPosition;
-        TextView tPrice;
+        MarketText tName;
+        MarketText tAge;
+        MarketText tRank;
+        MarketText tPosition;
+        MarketText tPrice;
         Button tBuy;
-        int rowId;
 
-        public CustomTableRow(Context context) {
+        public MarketRow(Context context) {
             super(context);
 
-            rowId = this.getId();
-
-            tType = new MarketActivity.CustomTextView(context);
-            tName = new MarketActivity.CustomTextView(context);
-            tAge = new MarketActivity.CustomTextView(context);
-            tRank = new MarketActivity.CustomTextView(context);
-            tPosition = new MarketActivity.CustomTextView(context);
-            tPrice = new MarketActivity.CustomTextView(context);
+            tName = new MarketText(context);
+            tAge = new MarketText(context);
+            tRank = new MarketText(context);
+            tPosition = new MarketText(context);
+            tPrice = new MarketText(context);
             tBuy = new Button(context);
 
-            ((MarketActivity.CustomTextView)tType).setWeight(3);
-
-            tBuy.setOnClickListener(view -> buyProduct());
-            TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1);
+            TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
             layoutParams.weight = 1;
             tBuy.setLayoutParams(layoutParams);
             tBuy.setText("Buy!");
             tBuy.setTextColor(getResources().getColor(R.color.white));
 
-            addView(tType);
+//            addView(tType);
             addView(tName);
             addView(tAge);
             addView(tRank);
@@ -78,19 +68,27 @@ public class MarketActivity extends Fullscreen {
 
         }
 
-        private void buyProduct() {
-        }
-
         @SuppressLint("SetTextI18n")
-        public void updateValues(Context context, Product p){
+        public void updateValues(Player p, String playerName, MarketActivity marketActivity){
 
-            tType.setText(""+p.type);
-            tName.setText(""+p.name);
+//            tType.setText(""+p.type);
+            tName.setText(""+playerName);
             tAge.setText(""+p.age);
             tRank.setText(""+p.rank);
             tPosition.setText(""+p.position);
+            tPrice.setText(p.value + " M");
+            tBuy.setOnClickListener(view -> {
+                if(gs.getClub().budget < p.value) {
+                    Toast.makeText(marketActivity, "You don't have enough money", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                gs.getClub().budget -= p.value;
+                gs.transferPlayer(playerName);
+//                System.out.println(gs.getPlayer(playerName));
+                gs.getPlayer(playerName).fieldPos = -1;;
+                finish();
+            });
         }
-
     }
 
     @Override
@@ -105,29 +103,36 @@ public class MarketActivity extends Fullscreen {
     }
 
     private void createRow() {
-        int i = 0;
-        for (Product p : getProductsAvailable()) {
-            i++;
-            MarketActivity.CustomTableRow tRow = new MarketActivity.CustomTableRow(this);
-            tRow.updateValues(this, p);
-            binding.productsTable.addView(tRow);
-        }
-    }
+//        int i = 0;
 
-    private Product[] getProductsAvailable() {
-        Product[] ps = new Product[10];
-        String[] types = {
-                "Player",
-                "Medic",
-                "Manager"
-        };
-        String name = "Placeholder";
-        String position = name;
-        for(int i = 0; i<10; i++) {
-            ps[i] = new Product(types[ i % 3 ], name, i + 20, i, ( i % 3 != 0)? "NA" : position);
+        for(NameAndObj n : gs.getAllPlayers()){
+            MarketRow row = new MarketRow(this);
+            row.updateValues((Player) n.obj,n.name,this);
+            binding.productsTable.addView(row);
         }
 
-        return ps;
+//        for (Product p : getProductsAvailable()) {
+//            i++;
+//            MarketActivity.CustomTableRow tRow = new MarketActivity.CustomTableRow(this);
+//            tRow.updateValues(n.obj);
+//            binding.productsTable.addView(tRow);
+//        }
     }
+
+//    private Product[] getProductsAvailable() {
+//        Product[] ps = new Product[10];
+//        String[] types = {
+//                "Player",
+//                "Medic",
+//                "Manager"
+//        };
+//        String name = "Placeholder";
+//        String position = name;
+//        for(int i = 0; i<10; i++) {
+//            ps[i] = new Product(types[ i % 3 ], name, i + 20, i, ( i % 3 != 0)? "NA" : position);
+//        }
+//
+//        return ps;
+//    }
 
 }

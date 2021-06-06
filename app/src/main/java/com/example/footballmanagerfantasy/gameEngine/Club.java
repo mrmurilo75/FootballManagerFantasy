@@ -26,6 +26,7 @@ public class Club implements Serializable {
     public Trainer deffTrainer;
     public Medic medic;
     public Tactics tactics;
+    public float budget;
 
     HashMap<String,Player> players = new HashMap<>();
 
@@ -36,6 +37,39 @@ public class Club implements Serializable {
         goalsScored = 0;
         draws = 0;
         losses = 0;
+        if(division == 1){
+            if(maxObjective == 1){
+                budget = 100;
+            }
+            else if(maxObjective == 2){
+                budget = 80;
+            }
+            else if(maxObjective == 5){
+                budget = 60;
+            }
+        }
+        if(division == 2){
+            if(maxObjective == 1){
+                budget = 50;
+            }
+            else if(maxObjective == 2){
+                budget = 40;
+            }
+            else if(maxObjective == 5){
+                budget = 30;
+            }
+        }
+        if(division == 3){
+            if(maxObjective == 1){
+                budget = 20;
+            }
+            else if(maxObjective == 2){
+                budget = 15;
+            }
+            else if(maxObjective == 5){
+                budget = 10;
+            }
+        }
         this.minObjective = minObjective;
         this.maxObjective = maxObjective;
         boolean topClub = maxObjective == 1 || maxObjective == 2;

@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
@@ -38,11 +39,10 @@ public class GameState implements Serializable{
     }
 
     public void initializePlayer(String club,String name){
-        playerDivision = 2;
+        playerDivision = 3;
         playerClub = club;
         Club c = clubsAndPlayers.get(playerDivision).clubs.get(club);
         c.manager = new Manager(name,35);
-
     }
 
     public Club getClub(){
@@ -265,20 +265,43 @@ public class GameState implements Serializable{
      * @return a list with all the players in the game,
      * useful for transferMarket to show all the players.
      */
-    public LinkedList<Player> getAllPlayers(){
+    public LinkedList<NameAndObj> getAllPlayers(){
 
-        LinkedList<Player> players = new LinkedList<>();
+        LinkedList<NameAndObj> players = new LinkedList<>();
 
         for( int leagueName : clubsAndPlayers.keySet() ){
             League l = clubsAndPlayers.get(leagueName);
             for( String clubName : l.clubs.keySet() ){
                 Club c = l.clubs.get(clubName);
+                if(c == getClub()) break;
                 for( String playerName : c.players.keySet() ){
-                    players.add(c.players.get(playerName));
+                    players.addLast( new NameAndObj(playerName,c.players.get(playerName)));
                 }
             }
         }
-//        Collections.sort( players, (p1, p2) -> p1.rank -p2.rank );
+        Collections.sort( players, (p1, p2) -> {
+            Player p3 =  (Player)p1.obj;
+            Player p4 =  (Player)p2.obj;
+            return p4.value -p3.value;
+        } );
+
         return players;
+    }
+    public void transferPlayer(String playerName){
+        Player p = null;
+
+        for( int leagueName : clubsAndPlayers.keySet() ){
+            League l = clubsAndPlayers.get(leagueName);
+            for( String clubName : l.clubs.keySet() ){
+                Club c = l.clubs.get(clubName);
+                Player p1 = c.players.remove(playerName);
+                if(p1 != null) {
+                    p = p1;
+                    break;
+                }
+            }
+            if(p != null) break;
+        }
+        clubsAndPlayers.get(playerDivision).clubs.get(playerClub).players.put(playerName,p);
     }
 }

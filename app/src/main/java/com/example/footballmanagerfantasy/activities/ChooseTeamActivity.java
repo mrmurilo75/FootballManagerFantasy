@@ -17,7 +17,7 @@ import java.util.LinkedList;
 public class ChooseTeamActivity extends Fullscreen {
 
     private ActivityChooseTeamBinding binding;
-    private final static int lastDivision = 2;
+    private final static int lastDivision = 3;
     private GameState gs = GameEngine.getGameState(); // contains all the info on the game state
     String playerName;
 

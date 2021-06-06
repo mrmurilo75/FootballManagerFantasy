@@ -7,25 +7,19 @@ import android.os.Bundle;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.footballmanagerfantasy.R;
 import com.example.footballmanagerfantasy.databinding.ActivityMainBinding;
-import com.example.footballmanagerfantasy.databinding.ActivityTacticsBinding;
 import com.example.footballmanagerfantasy.gameEngine.Club;
 import com.example.footballmanagerfantasy.gameEngine.GameEngine;
 import com.example.footballmanagerfantasy.gameEngine.GameState;
 import com.example.footballmanagerfantasy.gameEngine.NameAndObj;
 
-import java.util.LinkedList;
 
 public class MainActivity extends Fullscreen {
 
     private ActivityMainBinding binding;
 
-    private GameState gs = GameEngine.getGameState(); // contains all the info on the game state
+    private GameState gs; // contains all the info on the game state
 
 
     class CustomTextView extends androidx.appcompat.widget.AppCompatTextView{
@@ -90,7 +84,7 @@ public class MainActivity extends Fullscreen {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        gs = GameEngine.getGameState();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
         binding.buttonInboxMain.setOnClickListener(view -> launchInboxActivity());
@@ -99,8 +93,9 @@ public class MainActivity extends Fullscreen {
         binding.buttonMarketMain.setOnClickListener(view -> launchMarketActivity());
         binding.buttonTacticsMain.setOnClickListener(view -> launchTacticsActivity());
 
-        binding.button4Main.setOnClickListener(view -> testToast());
-
+        binding.saveGame.setOnClickListener(view -> saveGame());
+//        System.out.println(gs.getClub());
+        binding.budget.setText("BUDGET : " + gs.getClub().budget + " M");
         updateClassification(true);
         updateImages();
         setContentView(binding.getRoot());
@@ -140,6 +135,7 @@ public class MainActivity extends Fullscreen {
     @Override
     protected void onRestart() {
         super.onRestart();
+        binding.budget.setText("BUDGET : " + gs.getClub().budget + " M");
         updateClassification(false);
     }
 
@@ -148,9 +144,9 @@ public class MainActivity extends Fullscreen {
     }
 
     private void launchMarketActivity() {
-        Toast.makeText(this, "launchMarketActivity()", Toast.LENGTH_SHORT).show();
-
+//        setContentView(R.layout.activity_spinner);
         startActivity(new Intent(this, MarketActivity.class));
+
     }
 
     private void launchTacticsActivity() {
@@ -163,7 +159,8 @@ public class MainActivity extends Fullscreen {
         startActivity(new Intent(this, ResultTable.class));
     }
 
-    private void testToast() {
-        Toast.makeText(this, "Test Toast", Toast.LENGTH_SHORT).show();
+    private void saveGame() {
+        gs.saveGameState(this);
+        Toast.makeText(this, "Game Saved", Toast.LENGTH_SHORT).show();
     }
 }
